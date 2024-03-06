@@ -5,11 +5,11 @@ import xml.etree.ElementTree as ET
 import re
 from datetime import datetime
 
-jsonFile = open('data.json', 'r')
-csvFile = open('out.csv', 'w')
-logFile = open('log.txt', 'a')
-finalJson = open('final.json', 'w')
-rankingFile = open('connector-ranks.json', 'r')
+jsonFile = open('data/data.json', 'r')
+rankingFile = open('data/connector-ranks.json', 'r')
+csvFile = open('out/out.csv', 'w')
+logFile = open('out/log.txt', 'a')
+finalJson = open('out/final.json', 'w')
 
 ZIP_FILE_PATH = "zip_files/"
 connector_icons = {}
@@ -157,7 +157,7 @@ def get_rank(connector):
 
 def generate_json():
     connectors = []
-    with open('out.csv', 'r') as data:
+    with open('out/out.csv', 'r') as data:
         for line in data:
             if line.__contains__("#?"):
                 continue
@@ -194,6 +194,7 @@ try:
     logFile.write("\nEnd Session: {} ------------------------------- \n\n\n".format(datetime.now()))
 except Exception as ex:
     logFile.write("\n### Main Fail: {} \n\n\n".format(ex))
+    logFile.write("\nEnd Session: {} ------------------------------- \n\n\n".format(datetime.now()))
 
 jsonFile.close()
 csvFile.close()
